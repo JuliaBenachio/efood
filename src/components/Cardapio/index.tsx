@@ -1,4 +1,3 @@
-import { Paragrafo } from '../../styles'
 import Botao from '../Button'
 import { Card, Titulo, Foto, ImagemContainer, Sobre } from './styles'
 
