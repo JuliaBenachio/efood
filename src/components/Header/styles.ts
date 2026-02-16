@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { cores } from '../../styles'
+import { Link } from 'react-router-dom'
 
 export const HeaderContainer = styled.div`
   width: 100%;
@@ -16,4 +17,9 @@ export const NavBar = styled.nav`
   justify-items: center;
   height: 180px;
   padding: 60px;
+`
+
+export const Voltar = styled(Link)`
+  text-decoration: none;
+  color: inherit;
 `

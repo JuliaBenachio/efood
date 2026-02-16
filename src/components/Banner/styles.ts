@@ -32,7 +32,6 @@ export const Titulos = styled.div`
   flex-direction: column;
   justify-content: flex-end;
   gap: 150px;
-  margin-left: 168px;
 `
 export const TipoComida = styled.h2`
   font-size: 32px;

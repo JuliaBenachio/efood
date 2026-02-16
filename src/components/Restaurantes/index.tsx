@@ -5,13 +5,24 @@ import { Paragrafo } from '../../styles'
 import Botao from '../Button'
 
 type Props = {
+  id: number
   imagem: string
   nome: string
   descricao: string
   info: string[]
+  destacado: boolean
+  avaliacao: number
 }
 
-const Restaurantes = ({ imagem, nome, descricao, info }: Props) => (
+const RestaurantesCard = ({
+  imagem,
+  nome,
+  descricao,
+  info,
+  id,
+  destacado,
+  avaliacao
+}: Props) => (
   <Card>
     <Foto style={{ backgroundImage: `url(${imagem})` }}>
       <Tags>
@@ -23,15 +34,15 @@ const Restaurantes = ({ imagem, nome, descricao, info }: Props) => (
     <Titulos>
       <Titulo>{nome}</Titulo>
       <Avaliacao>
-        <Titulo>4.9</Titulo>
+        <Titulo>{avaliacao}</Titulo>
         <img src={estrela} alt="" />
       </Avaliacao>
     </Titulos>
     <Paragrafo>{descricao}</Paragrafo>
-    <Botao type="link" to="/restaurante" title="Saiba mais">
+    <Botao type="link" to={`/restaurante/${id}`} title="Saiba mais">
       Saiba mais
     </Botao>
   </Card>
 )
 
-export default Restaurantes
+export default RestaurantesCard

@@ -1,32 +1,56 @@
 import { Container, Lista } from './styles'
-import Restaurantes from '../Restaurantes'
+import RestaurantesCard from '../Restaurantes'
 import Cardapio from '../Cardapio'
-import Restaurante from '../../models/Restaurante'
-import Comidas from '../../models/Comidas'
+
+import { CardapioItem, Restaurantes } from '../../pages/Home'
 
 export type Props =
   | {
-      restaurante: Restaurante[]
+      restaurante: Restaurantes[]
       page: 'home'
     }
   | {
-      restaurante: Comidas[]
+      restaurante: CardapioItem[]
       page: 'cardapio'
     }
 
+export const formataPreco = (preco = 0) => {
+  return new Intl.NumberFormat('pt-br', {
+    style: 'currency',
+    currency: 'BRL'
+  }).format(preco)
+}
+
 const RestaurantesList = ({ restaurante, page }: Props) => {
+  const getRestauranteTag = (restaurante: Restaurantes) => {
+    const tags: string[] = []
+
+    if (restaurante.destacado) {
+      tags.push('Destaque')
+    }
+
+    if (restaurante.tipo) {
+      tags.push(restaurante.tipo)
+    }
+
+    return tags
+  }
+
   return (
     <Container page={page}>
       <div className="container">
         <Lista page={page}>
           {page === 'home' &&
             restaurante.map((item) => (
-              <Restaurantes
+              <RestaurantesCard
                 key={item.id}
-                imagem={item.imagem}
-                nome={item.nome}
+                id={item.id}
+                imagem={item.capa}
+                nome={item.titulo}
                 descricao={item.descricao}
-                info={item.info}
+                info={getRestauranteTag(item)}
+                destacado={item.destacado}
+                avaliacao={item.avaliacao}
               />
             ))}
 
@@ -34,10 +58,12 @@ const RestaurantesList = ({ restaurante, page }: Props) => {
             restaurante.map((item) => (
               <Cardapio
                 key={item.id}
-                imagem={item.imagem}
+                imagem={item.foto}
                 nome={item.nome}
                 descricao={item.descricao}
                 info={[]}
+                porcao={item.porcao}
+                preco={item.preco}
               />
             ))}
         </Lista>
