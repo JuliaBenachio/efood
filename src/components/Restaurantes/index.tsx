@@ -20,7 +20,6 @@ const RestaurantesCard = ({
   descricao,
   info,
   id,
-  destacado,
   avaliacao
 }: Props) => (
   <Card>
