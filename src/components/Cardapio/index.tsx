@@ -13,6 +13,9 @@ import {
 import close from '../../assets/images/fechar.png'
 import { useState } from 'react'
 import { formataPreco } from '../RestaurantesList'
+import { CardapioItem } from '../../pages/Home'
+import { useDispatch } from 'react-redux'
+import { add, open } from '../../store/reducers/cart'
 
 type Props = {
   imagem: string
@@ -21,9 +24,18 @@ type Props = {
   info?: string[]
   porcao: string
   preco: number
+  prato: CardapioItem
 }
 
-const Cardapio = ({ imagem, nome, descricao, porcao, preco }: Props) => {
+const Cardapio = ({ imagem, nome, descricao, porcao, preco, prato }: Props) => {
+  const dispatch = useDispatch()
+
+  const addToCart = () => {
+    dispatch(add(prato))
+    dispatch(open())
+    setModalEstaAberto(false)
+  }
+
   const [modalEstaAberto, setModalEstaAberto] = useState(false)
 
   const getDescricao = (descricao: string) => {
@@ -75,7 +87,9 @@ const Cardapio = ({ imagem, nome, descricao, porcao, preco }: Props) => {
               <h1>{nome}</h1>
               <Sobre>{descricao}</Sobre>
               <p>{porcao}</p>
-              <button>Adicionar ao carrinho - {formataPreco(preco)}</button>
+              <button onClick={addToCart}>
+                Adicionar ao carrinho - {formataPreco(preco)}
+              </button>
             </ModalInfos>
           </ModalContent>
         </ModalContainer>

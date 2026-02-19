@@ -1,14 +1,16 @@
 import styled from 'styled-components'
-import { cores } from '../../styles'
+import { breakpoints, cores } from '../../styles'
 
 export const Card = styled.div`
   position: relative;
   background-color: ${cores.branco};
+  width: 100%;
   max-width: 480px;
   max-height: 400px;
   border: 1px solid ${cores.salmao};
   color: ${cores.salmao};
   padding-bottom: 48px;
+  margin: 0 auto;
 `
 
 export const Foto = styled.section`
@@ -17,6 +19,10 @@ export const Foto = styled.section`
   background-size: cover;
   background-position: center;
   position: relative;
+
+  @media (max-width: ${breakpoints.tablet}) {
+    height: 180px;
+  }
 `
 
 export const Tags = styled.div`
@@ -33,11 +39,19 @@ export const Titulos = styled.ul`
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  @media (max-width: ${breakpoints.tablet}) {
+    font-size: 16px;
+  }
 `
 
 export const Titulo = styled.h2`
   font-weight: bold;
   font-size: 18px;
+
+  @media (max-width: ${breakpoints.tablet}) {
+    font-size: 16px;
+  }
 `
 export const Avaliacao = styled.div`
   display: flex;
@@ -48,5 +62,10 @@ export const Avaliacao = styled.div`
     display: block;
     width: 20px;
     height: 20px;
+
+    @media (max-width: ${breakpoints.tablet}) {
+      width: 16px;
+      height: 16px;
+    }
   }
 `

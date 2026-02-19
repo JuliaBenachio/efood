@@ -1,14 +1,19 @@
 import styled from 'styled-components'
-import { BotaoContainer, cores, Paragrafo } from '../../styles'
+import { BotaoContainer, cores, Paragrafo, breakpoints } from '../../styles'
 
 export const Card = styled.div`
   position: relative;
   background-color: ${cores.salmao};
+
+  width: 100%;
   max-width: 320px;
-  max-height: 340px;
+
   color: ${cores.cremeClaro};
   overflow: hidden;
+
   padding-bottom: 48px;
+
+  margin: 0 auto;
 `
 
 export const ImagemContainer = styled.div`
@@ -20,6 +25,7 @@ export const ImagemContainer = styled.div`
 export const Foto = styled.img`
   width: 95%;
   max-height: 168px;
+  object-fit: cover;
 `
 
 export const Titulo = styled.h2`
@@ -43,6 +49,7 @@ export const BotaoAdicionar = styled(BotaoContainer)`
 export const Modal = styled.div`
   position: fixed;
   inset: 0;
+
   width: 100%;
   height: 100%;
 
@@ -61,12 +68,18 @@ export const Modal = styled.div`
 
 export const ModalContainer = styled.div`
   max-width: 1024px;
-  width: 100%;
+  width: 90%;
+
   background-color: ${cores.salmao};
   color: ${cores.cremeClaro};
 
   padding: 32px;
+
   position: relative;
+
+  @media (max-width: ${breakpoints.tablet}) {
+    padding: 16px;
+  }
 
   header {
     position: absolute;
@@ -85,10 +98,21 @@ export const ModalContent = styled.div`
   display: flex;
   gap: 24px;
 
+  @media (max-width: ${breakpoints.tablet}) {
+    flex-direction: column;
+    align-items: center;
+  }
+
   img {
     width: 280px;
     height: 280px;
     object-fit: cover;
+
+    @media (max-width: ${breakpoints.tablet}) {
+      width: 100%;
+      height: auto;
+      max-width: 300px;
+    }
   }
 `
 
@@ -106,10 +130,16 @@ export const ModalInfos = styled.div`
   button {
     margin-top: 16px;
     padding: 4px 8px;
+
     background-color: ${cores.cremeClaro};
     color: ${cores.salmao};
+
     border: none;
     cursor: pointer;
     font-weight: bold;
+
+    @media (max-width: ${breakpoints.tablet}) {
+      width: 100%;
+    }
   }
 `

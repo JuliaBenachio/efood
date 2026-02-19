@@ -64,6 +64,7 @@ const RestaurantesList = ({ restaurante, page }: Props) => {
                 info={[]}
                 porcao={item.porcao}
                 preco={item.preco}
+                prato={item}
               />
             ))}
         </Lista>
