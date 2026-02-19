@@ -3,13 +3,14 @@ import Header from '../../components/Header'
 import RestaurantesList from '../../components/RestaurantesList'
 
 import { useParams } from 'react-router-dom'
+import { skipToken } from '@reduxjs/toolkit/query'
 
 import { useGetCardapioQuery } from '../../services/api'
 
 const Restaurante = () => {
   const { id } = useParams()
 
-  const { data: restaurante, isLoading } = useGetCardapioQuery(id!)
+  const { data: restaurante, isLoading } = useGetCardapioQuery(id ?? skipToken)
 
   if (isLoading || !restaurante) return <div>Carregando...</div>
 
@@ -17,7 +18,6 @@ const Restaurante = () => {
     <>
       <Header />
       <Banner restaurante={restaurante} />
-
       <RestaurantesList restaurante={restaurante.cardapio} page="cardapio" />
     </>
   )
