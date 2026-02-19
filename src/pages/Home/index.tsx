@@ -1,7 +1,6 @@
 import Hero from '../../components/Hero'
 import RestaurantesList from '../../components/RestaurantesList'
 
-import { useEffect, useState } from 'react'
 import { useGetRestauranteQuery } from '../../services/api'
 
 export interface CardapioItem {

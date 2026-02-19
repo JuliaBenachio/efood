@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { CardapioItem, Restaurantes } from '../pages/Home'
+import { Restaurantes } from '../pages/Home'
 
 const api = createApi({
   baseQuery: fetchBaseQuery({

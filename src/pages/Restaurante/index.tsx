@@ -3,8 +3,7 @@ import Header from '../../components/Header'
 import RestaurantesList from '../../components/RestaurantesList'
 
 import { useParams } from 'react-router-dom'
-import { Restaurantes } from '../Home'
-import { useEffect, useState } from 'react'
+
 import { useGetCardapioQuery } from '../../services/api'
 
 const Restaurante = () => {
