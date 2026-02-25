@@ -1,17 +1,23 @@
 import { BotaoContainer, BotaoAdicionar } from './styles'
 
 export type Props = {
-  type: 'button' | 'link'
+  type: 'button' | 'link' | 'submit'
   title: string
   to?: string
   onClick?: () => void
   children: string
+  disabled?: boolean
 }
 
-const Botao = ({ type, title, to, onClick, children }: Props) => {
-  if (type === 'button') {
+const Botao = ({ type, title, to, onClick, children, disabled }: Props) => {
+  if (type === 'button' || type === 'submit') {
     return (
-      <BotaoAdicionar type="button" title={title} onClick={onClick}>
+      <BotaoAdicionar
+        type={type}
+        title={title}
+        onClick={onClick}
+        disabled={disabled}
+      >
         {children}
       </BotaoAdicionar>
     )

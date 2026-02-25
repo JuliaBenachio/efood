@@ -2,26 +2,21 @@ import { Container, Lista } from './styles'
 import RestaurantesCard from '../Restaurantes'
 import Cardapio from '../Cardapio'
 
-import { CardapioItem, Restaurantes } from '../../pages/Home'
+import Loader from '../Loader'
 
 export type Props =
   | {
       restaurante: Restaurantes[]
       page: 'home'
+      isLoading: boolean
     }
   | {
       restaurante: CardapioItem[]
       page: 'cardapio'
+      isLoading: boolean
     }
 
-export const formataPreco = (preco = 0) => {
-  return new Intl.NumberFormat('pt-br', {
-    style: 'currency',
-    currency: 'BRL'
-  }).format(preco)
-}
-
-const RestaurantesList = ({ restaurante, page }: Props) => {
+const RestaurantesList = ({ restaurante, page, isLoading }: Props) => {
   const getRestauranteTag = (restaurante: Restaurantes) => {
     const tags: string[] = []
 
@@ -34,6 +29,10 @@ const RestaurantesList = ({ restaurante, page }: Props) => {
     }
 
     return tags
+  }
+
+  if (isLoading) {
+    return <Loader />
   }
 
   return (

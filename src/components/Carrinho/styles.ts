@@ -10,7 +10,16 @@ export const Overlay = styled.div`
   width: 100%;
   height: 100%;
   background-color: #000;
-  opacity: 0.8;
+
+  opacity: 0;
+  visibility: hidden;
+
+  transition: opacity 0.3s ease;
+
+  .is-open & {
+    opacity: 0.8;
+    visibility: visible;
+  }
 `
 
 export const CarrinhoContainer = styled.div`
@@ -19,12 +28,16 @@ export const CarrinhoContainer = styled.div`
   left: 0;
   width: 100%;
   height: 100vh;
-  display: none;
+
+  display: flex;
   justify-content: flex-end;
+
   z-index: 2;
 
+  pointer-events: none;
+
   &.is-open {
-    display: flex;
+    pointer-events: auto;
   }
 `
 
@@ -46,13 +59,37 @@ export const Sidebar = styled.aside`
   padding: 32px 8px;
   width: 360px;
   height: 100vh;
+
   display: flex;
   flex-direction: column;
+
+  position: relative;
+  top: 0;
+  right: 0;
+
+  transform: translateX(100%);
+
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+
+  .is-open & {
+    transform: translateX(0);
+  }
 
   ${BotaoAdicionar} {
     position: static;
     transform: none;
     width: 100%;
+
+    &:hover {
+      background-color: ${cores.creme};
+    }
+
+    &:disabled {
+      background-color: #ccc;
+      color: #666;
+      cursor: not-allowed;
+      opacity: 0.7;
+    }
   }
 
   @media (max-width: ${breakpoints.tablet}) {
@@ -105,4 +142,18 @@ export const BotaoRemover = styled.button`
   right: 8px;
 
   cursor: pointer;
+`
+
+export const FecharContainer = styled.div`
+  header {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+
+    img {
+      width: 12px;
+      height: 12px;
+      cursor: pointer;
+    }
+  }
 `

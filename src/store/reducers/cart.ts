@@ -1,14 +1,15 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { CardapioItem } from '../../pages/Home'
 
 type CartState = {
   items: CardapioItem[]
   isOpen: boolean
+  step: 'cart' | 'address' | 'payment' | 'confirmation'
 }
 
 const initialState: CartState = {
   items: [],
-  isOpen: false
+  isOpen: false,
+  step: 'cart'
 }
 
 const cartSlice = createSlice({
@@ -32,9 +33,18 @@ const cartSlice = createSlice({
     },
     close: (state) => {
       state.isOpen = false
+    },
+    setStep: (
+      state,
+      action: PayloadAction<'cart' | 'address' | 'payment' | 'confirmation'>
+    ) => {
+      state.step = action.payload
+    },
+    clear: (state) => {
+      state.items = []
     }
   }
 })
 
-export const { add, open, close, remove } = cartSlice.actions
+export const { add, open, close, remove, setStep, clear } = cartSlice.actions
 export default cartSlice.reducer

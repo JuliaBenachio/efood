@@ -33,7 +33,7 @@ export const NavBar = styled.nav`
   @media (max-width: ${breakpoints.tablet}) {
     grid-template-columns: 1fr;
 
-    gap: 16px;
+    gap: 32px;
 
     height: auto;
 

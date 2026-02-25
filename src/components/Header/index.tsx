@@ -1,10 +1,11 @@
+import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
+
 import Fundo from '../../assets/images/fundo.png'
 import Logo from '../../assets/images/logo.png'
 import { BotaoCarrinho, HeaderContainer, NavBar, Voltar } from './styles'
 
 import { open } from '../../store/reducers/cart'
-import { useDispatch, useSelector } from 'react-redux'
 import { RootReducer } from '../../store'
 
 const Header = () => {

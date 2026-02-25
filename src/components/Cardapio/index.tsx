@@ -1,3 +1,7 @@
+import { useState } from 'react'
+import { useDispatch } from 'react-redux'
+
+import Loader from '../Loader'
 import Botao from '../Button'
 import {
   Card,
@@ -11,10 +15,8 @@ import {
   ModalInfos
 } from './styles'
 import close from '../../assets/images/fechar.png'
-import { useState } from 'react'
-import { formataPreco } from '../RestaurantesList'
-import { CardapioItem } from '../../pages/Home'
-import { useDispatch } from 'react-redux'
+
+import { formataPreco } from '../../utils'
 import { add, open } from '../../store/reducers/cart'
 
 type Props = {
@@ -44,6 +46,10 @@ const Cardapio = ({ imagem, nome, descricao, porcao, preco, prato }: Props) => {
     }
 
     return descricao
+  }
+
+  if (!prato || !nome) {
+    return <Loader />
   }
 
   return (

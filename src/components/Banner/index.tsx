@@ -1,5 +1,4 @@
 import { BannerContainer, TipoComida, NomeRestaurante, Titulos } from './styles'
-import { Restaurantes } from '../../pages/Home'
 
 type Props = {
   restaurante?: Restaurantes
