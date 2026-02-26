@@ -41,59 +41,65 @@ const Checkout = () => {
       anoVencimento: ''
     },
 
-    validationSchema: Yup.object({
-      nomeCompleto:
-        step === 'address'
-          ? Yup.string().required('Campo obrigatório')
-          : Yup.string(),
+    validationSchema: () =>
+      Yup.object({
+        nomeCompleto:
+          step === 'address'
+            ? Yup.string()
+                .min(5, 'O nome precisa ter pelo menos 5 caracteres')
+                .required('Campo obrigatório')
+            : Yup.string(),
 
-      endereco:
-        step === 'address'
-          ? Yup.string().required('Campo obrigatório')
-          : Yup.string(),
+        endereco:
+          step === 'address'
+            ? Yup.string().required('Campo obrigatório')
+            : Yup.string(),
 
-      cidade:
-        step === 'address'
-          ? Yup.string().required('Campo obrigatório')
-          : Yup.string(),
+        cidade:
+          step === 'address'
+            ? Yup.string().required('Campo obrigatório')
+            : Yup.string(),
 
-      cep:
-        step === 'address'
-          ? Yup.string().required('Campo obrigatório')
-          : Yup.string(),
+        cep:
+          step === 'address'
+            ? Yup.string()
+                .min(9, 'O campo precisa ter 8 caracteres')
+                .max(9, 'O campo precisa ter 8 caracteres')
+                .required('Campo obrigatório')
+            : Yup.string(),
 
-      numero:
-        step === 'address'
-          ? Yup.string().required('Campo obrigatório')
-          : Yup.string(),
+        numero:
+          step === 'address'
+            ? Yup.string().required('Campo obrigatório')
+            : Yup.string(),
 
-      complemento: Yup.string(),
+        complemento: Yup.string(),
 
-      nomeCartao:
-        step === 'payment'
-          ? Yup.string().required('Campo obrigatório')
-          : Yup.string(),
+        nomeCartao:
+          step === 'payment'
+            ? Yup.string().min(5).required('Campo obrigatório')
+            : Yup.string(),
 
-      numeroCartao:
-        step === 'payment'
-          ? Yup.string().required('Campo obrigatório')
-          : Yup.string(),
+        numeroCartao:
+          step === 'payment'
+            ? Yup.string().min(19).max(19).required('Campo obrigatório')
+            : Yup.string(),
 
-      cvv:
-        step === 'payment'
-          ? Yup.string().required('Campo obrigatório')
-          : Yup.string(),
+        cvv:
+          step === 'payment'
+            ? Yup.string().min(3).max(3).required('Campo obrigatório')
+            : Yup.string(),
 
-      mesVencimento:
-        step === 'payment'
-          ? Yup.string().required('Campo obrigatório')
-          : Yup.string(),
+        mesVencimento:
+          step === 'payment'
+            ? Yup.string().min(2).max(2).required('Campo obrigatório')
+            : Yup.string(),
 
-      anoVencimento:
-        step === 'payment'
-          ? Yup.string().required('Campo obrigatório')
-          : Yup.string()
-    }),
+        anoVencimento:
+          step === 'payment'
+            ? Yup.string().min(4).max(4).required('Campo obrigatório')
+            : Yup.string()
+      }),
 
     onSubmit: (values) => {
       purchase({
@@ -224,14 +230,16 @@ const Checkout = () => {
                   <Row>
                     <InputGroup maxWidth="155px">
                       <label htmlFor="cep">CEP</label>
-                      <input
-                        type="number"
+                      <InputMask
+                        type="text"
                         id="cep"
                         name="cep"
                         value={form.values.cep}
                         onChange={form.handleChange}
                         onBlur={form.handleBlur}
                         className={checkInputHasError('cep') ? 'error' : ''}
+                        mask="99999-999"
+                        maskChar={null}
                       />
                     </InputGroup>
                     <InputGroup maxWidth="155px">
@@ -308,6 +316,7 @@ const Checkout = () => {
                           checkInputHasError('numeroCartao') ? 'error' : ''
                         }
                         mask="9999 9999 9999 9999"
+                        maskChar={null}
                       />
                     </InputGroup>
                     <InputGroup maxWidth="87px">
@@ -321,6 +330,7 @@ const Checkout = () => {
                         onBlur={form.handleBlur}
                         className={checkInputHasError('cvv') ? 'error' : ''}
                         mask="999"
+                        maskChar={null}
                       />
                     </InputGroup>
                   </Row>
@@ -338,6 +348,7 @@ const Checkout = () => {
                           checkInputHasError('mesVencimento') ? 'error' : ''
                         }
                         mask="99"
+                        maskChar={null}
                       />
                     </InputGroup>
                     <InputGroup maxWidth="155px">
@@ -353,6 +364,7 @@ const Checkout = () => {
                           checkInputHasError('anoVencimento') ? 'error' : ''
                         }
                         mask="9999"
+                        maskChar={null}
                       />
                     </InputGroup>
                   </Row>
